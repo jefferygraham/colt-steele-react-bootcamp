@@ -17,9 +17,8 @@ class Clicker extends Component {
 
     render() {
         let display;
-
         if (this.state.num === 7) {
-            display = <p>You Win!</p>
+            display = <h2>You Win!</h2>
         }
         else {
             display = <button onClick={this.handleClick}>Random Number</button>
