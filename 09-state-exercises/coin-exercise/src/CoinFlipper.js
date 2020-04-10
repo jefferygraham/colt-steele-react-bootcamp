@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Coin from './Coin';
 import './CoinFlipper.css';
+import { choice } from './helpers';
 
 class CoinFlipper extends Component {
     static defaultProps = {
-        faces: ['heads', 'tails']
-    }
+        coins: [
+            { side: 'heads', imgSrc: 'https://tinyurl.com/react-coin-heads-jpg' },
+            { side: 'tails', imgSrc: 'https://tinyurl.com/react-coin-tails-jpg' }
+        ]
+    };
 
     constructor(props) {
         super(props);
@@ -17,38 +21,35 @@ class CoinFlipper extends Component {
         }
     }
 
-    flip = () => {
-        let face = this.props.faces[Math.floor(Math.random() * this.props.faces.length)];
-        if (face === 'heads') {
-            this.setState((currState) => ({
-                numHeads: currState.numHeads + 1,
-                showing: true,
-                currCoin: face
-            }))
-        } else {
-            this.setState((currState) => ({
-                numTails: currState.numTails + 1,
-                showing: true,
-                currCoin: face
-            }))
-        }
+    flipCoin = () => {
+        const newCoin = choice(this.props.coins);
+        this.setState(currState => ({
+            currCoin: newCoin,
+            numHeads: currState.numHeads + (newCoin.side === 'heads' ? 1 : 0),
+            numTails: currState.numTails + (newCoin.side === 'tails' ? 1 : 0)
+        }))
     }
 
     handleClick = (e) => {
-        this.flip();
-    }
+        this.flipCoin();
+    };
 
     render() {
-        const { numHeads, numTails, showing } = this.state;
+        const { currCoin, numHeads, numTails } = this.state;
         return (
             <div className="CoinFlipper">
-                <h2>Let's Flip a Coin</h2>
-                <Coin showing={showing} face={this.state.currCoin} />
-                <button onClick={this.handleClick}>Flip Coin</button>
-                <p>Out of {numHeads + numTails} flips, there have {numHeads} heads and {numTails} tails</p>
+                <h2>Let's Flip A Coin</h2>
+                {currCoin && <Coin coin={currCoin} />}
+                <button onClick={this.handleClick}>Flip Me</button>
+                <p>
+                    Out of {numHeads + numTails} flips,
+                    there have been {numHeads} heads and {numTails} tails
+                </p>
             </div>
         )
     }
+
+
 }
 
 export default CoinFlipper;
