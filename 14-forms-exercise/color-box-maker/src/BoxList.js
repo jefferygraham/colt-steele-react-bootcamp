@@ -6,7 +6,7 @@ class BoxList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boxes: []
+            boxes: [{ width: 10, height: 40, backgroundColor: 'red' }]
         }
     }
 
@@ -24,12 +24,13 @@ class BoxList extends Component {
     }
 
     render() {
+        const boxes = this.state.boxes.map(box => (
+            <Box height={box.height} width={box.width} backgroundColor={box.backgroundColor} />
+        ));
         return (
             <div className="BoxList">
                 <h1>Box List</h1>
-                {this.state.boxes.map(box => (
-                    <li>{box}</li>
-                ))}
+                {boxes}
                 <NewBoxForm makeBox={this.makeBox} />
             </div>
         )
