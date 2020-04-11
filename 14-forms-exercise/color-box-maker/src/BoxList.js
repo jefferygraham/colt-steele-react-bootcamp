@@ -6,19 +6,30 @@ class BoxList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numBoxes: 0
+            boxes: []
         }
     }
 
     makeBox = (obj) => {
         console.log(obj);
+        let boxStyle = {
+            height: obj.height,
+            width: obj.width,
+            backgroundColor: obj.backgroundColor
+        };
+        let newBox = <Box height={boxStyle.height} width={boxStyle.width} backgroundColor={boxStyle.backgroundColor} />;
+        this.setState(st => ({
+            boxes: [...st.boxes, newBox]
+        }))
     }
 
     render() {
         return (
             <div className="BoxList">
                 <h1>Box List</h1>
-                <Box />
+                {this.state.boxes.map(box => (
+                    <li>{box}</li>
+                ))}
                 <NewBoxForm makeBox={this.makeBox} />
             </div>
         )

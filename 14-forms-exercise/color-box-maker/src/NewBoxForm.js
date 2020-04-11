@@ -7,7 +7,7 @@ class NewBoxForm extends Component {
         this.state = {
             height: "",
             width: "",
-            bgcolor: ""
+            backgroundColor: ""
         }
     }
 
@@ -23,7 +23,7 @@ class NewBoxForm extends Component {
         this.setState({
             height: "",
             width: "",
-            bgcolor: ""
+            backgroundColor: ""
         })
     }
 
@@ -34,8 +34,8 @@ class NewBoxForm extends Component {
                 <input id="height" name="height" type="text" value={this.state.height} onChange={this.handleChange} />
                 <label htmlFor="width">Enter box width:</label>
                 <input id="width" name="width" type="text" value={this.state.width} onChange={this.handleChange} />
-                <label htmlFor="bgcolor">Enter background color:</label>
-                <input id="bgcolor" name="bgcolor" type="text" value={this.state.bgcolor} onChange={this.handleChange} />
+                <label htmlFor="color">Enter background color:</label>
+                <input id="backgroundColor" name="backgroundColor" type="text" value={this.state.backgroundColor} onChange={this.handleChange} />
                 <button>Submit</button>
             </form>
         )
