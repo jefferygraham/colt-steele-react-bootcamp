@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './NewBoxForm.css';
 
 class NewBoxForm extends Component {
     constructor(props) {
@@ -19,7 +18,7 @@ class NewBoxForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.makeBox(this.state);
+        this.props.create(this.state);
         this.setState({
             height: "",
             width: "",
@@ -30,13 +29,19 @@ class NewBoxForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="NewBoxForm ">
-                <label htmlFor="height">Enter box height:</label>
-                <input id="height" name="height" type="text" value={this.state.height} onChange={this.handleChange} />
-                <label htmlFor="width">Enter box width:</label>
-                <input id="width" name="width" type="text" value={this.state.width} onChange={this.handleChange} />
-                <label htmlFor="color">Enter background color:</label>
-                <input id="backgroundColor" name="backgroundColor" type="text" value={this.state.backgroundColor} onChange={this.handleChange} />
-                <button>Submit</button>
+                <div>
+                    <label htmlFor="height">Enter box height:</label>
+                    <input id="height" name="height" type="text" value={this.state.height} onChange={this.handleChange} />
+                </div>
+                <div>
+                    <label htmlFor="width">Enter box width:</label>
+                    <input id="width" name="width" type="text" value={this.state.width} onChange={this.handleChange} />
+                </div>
+                <div>
+                    <label htmlFor="color">Enter background color:</label>
+                    <input id="backgroundColor" name="backgroundColor" type="text" value={this.state.backgroundColor} onChange={this.handleChange} />
+                </div>
+                <button>Add New Box</button>
             </form>
         )
     }

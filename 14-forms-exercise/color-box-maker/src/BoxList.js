@@ -6,21 +6,14 @@ class BoxList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boxes: [{ width: 10, height: 40, backgroundColor: 'red' }]
+            boxes: [{ width: 10, height: 15, backgroundColor: 'red' }]
         }
     }
 
-    makeBox = (obj) => {
-        console.log(obj);
-        let boxStyle = {
-            height: obj.height,
-            width: obj.width,
-            backgroundColor: obj.backgroundColor
-        };
-        let newBox = <Box height={boxStyle.height} width={boxStyle.width} backgroundColor={boxStyle.backgroundColor} />;
-        this.setState(st => ({
-            boxes: [...st.boxes, newBox]
-        }))
+    create = (newBox) => {
+        this.setState({
+            boxes: [...this.state.boxes, newBox]
+        })
     }
 
     render() {
@@ -31,7 +24,7 @@ class BoxList extends Component {
             <div className="BoxList">
                 <h1>Box List</h1>
                 {boxes}
-                <NewBoxForm makeBox={this.makeBox} />
+                <NewBoxForm create={this.create} />
             </div>
         )
     }
