@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewTodoForm from './NewTodoForm'
 import Todo from './Todo'
+import './TodoList.css'
 const uuid4 = require('uuid4');
 
 
@@ -28,7 +29,7 @@ class TodoList extends Component {
         return (
             <div className="TodoList">
                 <h1>Todo List</h1>
-                <ul>
+                <ul className="TodoList-items">
                     {this.state.todos.map(todo => (
                         <li key={`${uuid4()}`}><Todo deleteTodo={this.deleteTodo} todo={todo} /></li>
                     ))}

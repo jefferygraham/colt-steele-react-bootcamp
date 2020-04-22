@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Todo.css'
 
 class Todo extends Component {
     handleClick = () => {
@@ -9,7 +10,7 @@ class Todo extends Component {
         return (
             <div className="Todo">
                 <p>{this.props.todo}</p>
-                <button onClick={this.handleClick}>x</button>
+                <button className="Todo-button" onClick={this.handleClick}>x</button>
             </div>
         )
     }
