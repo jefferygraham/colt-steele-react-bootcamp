@@ -16,13 +16,21 @@ class TodoList extends Component {
         })
     }
 
+    deleteTodo = (deletedTodo) => {
+        console.log(`deleting...${deletedTodo}`)
+        const newTodos = this.state.todos.filter(todo => todo !== deletedTodo)
+        this.setState({
+            todos: newTodos
+        })
+    }
+
     render() {
         return (
             <div className="TodoList">
                 <h1>Todo List</h1>
                 <ul>
                     {this.state.todos.map(todo => (
-                        <li key={`${uuid4()}`}><Todo todo={todo} /></li>
+                        <li key={`${uuid4()}`}><Todo deleteTodo={this.deleteTodo} todo={todo} /></li>
                     ))}
                 </ul>
                 <NewTodoForm addTodo={this.addTodo} />
