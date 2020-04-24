@@ -47,7 +47,6 @@ class Deck extends Component {
         if (this.state.remaining > 0) {
             display =
                 <div>
-                    <button onClick={this.handleClick}>Gimme a card</button>
                     <Card
                         imgSrc={this.state.imgSrc}
                         suit={this.state.suit}
@@ -62,6 +61,7 @@ class Deck extends Component {
         }
         return (
             <div>
+                <button onClick={this.handleClick} disabled={this.state.remaining === 0}>Gimme a card</button>
                 {display}
             </div>
         )
