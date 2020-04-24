@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class Deck extends Component {
     constructor(props) {
@@ -6,6 +7,10 @@ class Deck extends Component {
         this.state = {
             deck: ''
         }
+    }
+
+    componentDidMount() {
+        axios.get('https://deckofcardsapi.com/api/deck/new/shuffle ')
     }
     render() {
         return (
