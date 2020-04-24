@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Card from './Card'
 import axios from 'axios'
 
 class Deck extends Component {
@@ -7,7 +8,9 @@ class Deck extends Component {
         this.state = {
             deck_id: '',
             remaining: 52,
-            currentCard: ''
+            imgSrc: '',
+            suit: '',
+            value: ''
         }
     }
 
@@ -30,7 +33,9 @@ class Deck extends Component {
                 console.log(data)
                 this.setState({
                     remaining: data.remaining,
-                    currentCard: data.cards[0].image
+                    imgSrc: data.cards[0].image,
+                    suit: data.cards[0].suit,
+                    value: data.cards[0].value,
                 })
             })
     }
@@ -38,12 +43,26 @@ class Deck extends Component {
 
 
     render() {
+        let display;
+        if (this.state.remaining > 0) {
+            display =
+                <div>
+                    <button onClick={this.handleClick}>Gimme a card</button>
+                    <Card
+                        imgSrc={this.state.imgSrc}
+                        suit={this.state.suit}
+                        value={this.state.value}
+                    />
+                </div>
+        } else {
+            display =
+                <div>
+                    <p>No More cards!</p>
+                </div>
+        }
         return (
             <div>
-                <button onClick={this.handleClick}>Gimme a card</button>
-                <div>
-                    <img src={this.state.currentCard} />
-                </div>
+                {display}
             </div>
         )
     }
