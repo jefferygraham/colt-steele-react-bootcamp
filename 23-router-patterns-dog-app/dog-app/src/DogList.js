@@ -9,8 +9,8 @@ class DogList extends Component {
                 <div className="container">
                     <div className="row">
                         {this.props.dogs.map(dog => (
-                            <div key={dog.name} className="Dog col-lg-4 text-center">
-                                <img className="im" src={dog.src} alt={dog.name} />
+                            <div key={dog.name} className="DogList-dog col-lg-4 text-center">
+                                <img src={dog.src} alt={dog.name} />
                                 <h3>{dog.name}</h3>
                             </div>
                         ))}
